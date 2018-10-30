@@ -386,15 +386,19 @@ def _check_version():
         if r.text:
             remote_version = float(r.text)
             if remote_version > current_version:
-                print '\n==================== NOTICE ====================\n' \
-                      'A newer version \'{}\' of the mason-cli is available.\n' \
-                      'Run:\n' \
-                      '    `pip install --upgrade git+https://git@github.com/MasonAmerica/mason-cli.git`\n' \
-                      'to upgrade to the latest version.\n' \
-                      '\n' \
-                      'Release notes: https://github.com/MasonAmerica/mason-cli/releases' \
-                      '\n' \
-                      '==================== NOTICE ====================\n'.format(remote_version)
+                msg = (
+                    '\n==================== NOTICE ====================\n' \
+                    'A newer version \'{}\' of the mason-cli is available.\n' \
+                    'Run:\n' \
+                    '    `pip install --upgrade git+https://git@github.com/MasonAmerica/mason-cli.git`\n' \
+                    'to upgrade to the latest version.\n' \
+                    '\n' \
+                    'Release notes: https://github.com/MasonAmerica/mason-cli/releases' \
+                    '\n' \
+                    '==================== NOTICE ====================\n'.format(remote_version))
+                sys.stderr.write(msg)
+                sys.stderr.flush()
+
 
 if __name__ == '__main__':
     cli()
